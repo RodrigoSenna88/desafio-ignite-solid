@@ -1,5 +1,3 @@
-import { response } from "express";
-
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -15,7 +13,7 @@ class CreateUserUseCase {
     const userAlreadyExists = this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new Error("User already exists");
+      throw new Error("E-mail already exists!");
     }
 
     const userCreated = this.usersRepository.create({ email, name });
