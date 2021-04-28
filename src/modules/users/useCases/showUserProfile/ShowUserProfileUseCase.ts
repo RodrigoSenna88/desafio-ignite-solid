@@ -1,3 +1,5 @@
+import { response } from "express";
+
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -12,7 +14,7 @@ class ShowUserProfileUseCase {
     const userExists = this.usersRepository.findById(user_id);
 
     if (!userExists) {
-      throw new Error("User not found!");
+      response.status(400).json({ error: "User not found!" });
     }
 
     return userExists;
